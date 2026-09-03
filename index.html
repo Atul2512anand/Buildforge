@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BuildForge — We build what moves brands forward.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--orange:#7C3AED;--orange2:#C4B5FD;--black:#18181B;--dark:#232326;--gray:#f5f5f3;--line:#E7E7E3;--muted:#6B7280;--purple:#7C3AED;--purple-light:#EDE9FE}
+body{font-family:'Instrument Sans','Inter',sans-serif;background:#FCFCFA;color:#111;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+/* NAV */
+.nav-wrap{position:sticky;top:0;z-index:50;background:rgba(252,252,250,.85);backdrop-filter:blur(12px);border-bottom:1px solid #eee}
+.nav{max-width:1280px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{font-weight:900;font-size:22px;letter-spacing:-.05em}
+.logo span{color:var(--purple)}
+.nav-links{display:flex;gap:28px;font-size:13px;font-weight:700;align-items:center;letter-spacing:.04em;text-transform:uppercase}
+.nav-links a{opacity:.65} .nav-links a.active{color:var(--purple);opacity:1}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.btn-pill{font-size:13px;font-weight:700;padding:9px 18px;border-radius:999px;border:1.5px solid #111;background:#fff}
+.btn-pill.primary{background:var(--purple);color:#fff;border-color:var(--purple)}
+.btn-black{background:#111;color:#fff;border-radius:999px;padding:10px 18px;font-size:13px;font-weight:700}
+/* HERO */
+.hero{max-width:1280px;margin:0 auto;padding:28px 24px 0;position:relative;text-align:center}
+.hero h1{font-size:clamp(36px,6vw,64px);line-height:.95;letter-spacing:-.05em;font-weight:800}
+.hero h1 em{font-style:normal;color:var(--purple)}
+.hero h1 .hand{font-size:.9em}
+.hero-quote{position:absolute;left:24px;top:140px;max-width:260px;text-align:left;font-size:13px;line-height:1.5;color:#555}
+.hero-quote::before{content:'“';font-size:32px;line-height:1;color:#111;display:block}
+.hero-right{position:absolute;right:24px;top:200px;text-align:right}
+.hero-right strong{font-size:26px;display:block;line-height:1}
+.hero-right span{font-size:12px;color:#777}
+.hero-visual{position:relative;margin:18px auto 0;max-width:560px;height:520px;display:flex;align-items:flex-end;justify-content:center}
+.hero-arc{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:520px;height:360px;background:var(--orange2);border-radius:520px 520px 0 0;opacity:.95}
+.hero-img{position:relative;z-index:2;width:420px;height:480px;object-fit:cover;object-position:top;border-radius:0 0 18px 18px;filter:contrast(1.08)}
+.pill{position:absolute;z-index:3;background:#111;color:#fff;font-size:12px;font-weight:700;padding:7px 13px;border-radius:999px;display:flex;align-items:center;gap:6px;box-shadow:0 8px 20px rgba(0,0,0,.18);white-space:nowrap}
+.pill.light{background:#fff;color:#111;border:1px solid #111}
+.p-Marketing{left:-8px;top:62px}
+.p-Brand{left:12px;top:230px}
+.p-Ads{right:18px;top:84px}
+.p-Social{right:-10px;top:278px}
+.hero-ctas{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:4;display:flex;gap:8px;background:#1F1F23;color:#fff;padding:6px;border-radius:999px}
+.hero-ctas a{padding:10px 16px;border-radius:999px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px}
+.hero-ctas a:first-child{background:var(--purple);color:#fff}
+/* STATS BAR */
+.stats{background:#232326;color:#fff;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
+.stats::-webkit-scrollbar{display:none}
+.stat-item{flex:1;min-width:160px;padding:18px 28px;border-right:1px solid #333;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.stat-item strong{font-size:44px;font-weight:900;line-height:1;letter-spacing:-.06em}
+.stat-item span{font-size:11px;font-weight:700;opacity:.7;letter-spacing:.02em;white-space:nowrap}
+.stat-star{padding:18px 14px;font-size:28px;color:var(--purple)}
+/* MARQUEE */
+.marquee{background:#fff;border-top:1px solid #eee;border-bottom:1px solid #eee;overflow:hidden;white-space:nowrap;padding:10px 0}
+.marquee-track{display:inline-flex;animation:marq 18s linear infinite;gap:12px;align-items:center;font-weight:700;letter-spacing:-.02em;font-size:18px}
+.marquee-track span{opacity:.9}
+.marquee-track b{color:var(--purple)}
+@keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* ABOUT / WHAT WE DO */
+.about{max-width:1280px;margin:0 auto;padding:44px 24px;display:grid;grid-template-columns:1.3fr .9fr;gap:40px;align-items:start}
+.section-title{font-size:56px;font-weight:900;letter-spacing:-.05em;line-height:1}
+.section-title.lg{font-size:52px}
+.about p{font-size:13.5px;line-height:1.7;color:#444;margin-top:18px}
+.about p strong{color:#111}
+.about .highlight{text-decoration:underline;text-decoration-color:var(--purple);text-decoration-thickness:3px}
+.about-visual{position:relative;display:flex;justify-content:center}
+.about-visual .arc{position:absolute;bottom:0;width:420px;height:420px;background:var(--orange2);border-radius:50%;left:50%;transform:translateX(-35%)}
+.about-visual img{position:relative;z-index:1;width:380px;height:460px;object-fit:cover;object-position:top;border-radius:0}
+/* EXPERIENCE GRID */
+.exp-section{max-width:1280px;margin:0 auto;padding:10px 24px 20px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+.card-group{background:#fff;border:1px solid #EDEDEA;border-radius:22px;padding:18px;box-shadow:0 8px 32px rgba(0,0,0,.04)}
+.card-group h2{font-size:38px;font-weight:900;letter-spacing:-.05em;margin-bottom:14px}
+.exp-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f2f2f2}
+.exp-item:last-child{border:0}
+.exp-logo{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;font-weight:900;font-size:11px;color:#fff;flex-shrink:0}
+.exp-logo.kahf{background:#16423C} .exp-logo.hago{background:#FFE600;color:#111} .exp-logo.blue{background:#0E4DA4} .exp-logo.laz{background:linear-gradient(135deg,#0F118C,#FF3D6E)} .exp-logo.kompas{background:#FFD600;color:#111}
+.exp-meta{flex:1}
+.exp-meta h4{font-size:12.5px;line-height:1.3}
+.exp-meta .date{font-size:10px;color:#999;font-weight:700}
+.exp-meta p{font-size:11.5px;color:#555;line-height:1.5;margin-top:4px}
+.education{padding-bottom:6px}
+.edu-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #f2f2f2}
+.edu-logo{width:32px;height:32px;border-radius:8px;background:#fff;border:1px solid #eee;display:grid;place-items:center;font-size:14px;flex-shrink:0}
+.edu-item h4{font-size:13px}
+.edu-item .sub{font-size:11px;color:#777}
+.badge{font-size:9px;background:var(--purple);color:#fff;padding:3px 7px;border-radius:999px;font-weight:800;vertical-align:middle}
+.accolades{margin-top:14px}
+.accolades h3{font-size:24px;font-weight:900;letter-spacing:-.04em}
+.accolade-note{margin-top:12px;display:flex;gap:14px;align-items:flex-start}
+.sticky-note{background:#E8F0FE;border:1px dashed #9AB0FF;border-radius:12px;padding:12px 14px;transform:rotate(-1.5deg);font-size:12px;line-height:1.4;max-width:260px}
+.sticky-note strong{color:#1A3CFF}
+.linkedin-card{border:1px solid #eee;border-radius:12px;padding:10px;display:flex;gap:10px;align-items:center;background:#fff;box-shadow:0 6px 20px rgba(0,0,0,.06)}
+.linkedin-card .in{width:44px;height:44px;background:#0A66C2;color:#fff;display:grid;place-items:center;font-weight:900;border-radius:6px;font-size:22px}
+/* SKILLS */
+.skills{max-width:1280px;margin:0 auto;padding:8px 24px 18px;text-align:center}
+.skills h2{font-size:52px;font-weight:900;letter-spacing:-.05em;display:inline-flex;align-items:center;gap:10px}
+.skills h2::before,.skills h2::after{content:'';font-size:14px;color:#111;opacity:.4}
+.skills-pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
+.skill-pill{border:1.5px solid #111;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700;background:#fff}
+.skill-pill.orange{border-color:var(--purple);background:var(--purple);color:#fff}
+/* TOOLS + CERT */
+.tools-cert{max-width:1280px;margin:0 auto;padding:18px 24px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.tools-cert h2{font-size:44px;font-weight:900;letter-spacing:-.05em}
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+.tool-card{background:#fff;border:1px solid #EDEDEA;border-radius:16px;padding:14px}
+.tool-card h4{font-size:11px;color:#777;margin-bottom:10px;font-weight:700}
+.tool-icons{display:flex;gap:10px;margin-bottom:10px}
+.tool-icon{width:40px;height:40px;border-radius:10px;background:#F6F6F5;border:1px solid #eee;display:grid;place-items:center;font-size:18px}
+.tool-list{font-size:10px;line-height:1.8;color:#333;list-style:none}
+.tool-list li::before{content:'●';color:var(--purple);margin-right:6px;font-size:7px;vertical-align:middle}
+.cert-list{margin-top:14px;display:flex;flex-direction:column;gap:14px}
+.cert-item{display:flex;gap:12px;align-items:flex-start;padding:12px;background:#fff;border:1px solid #EDEDEA;border-radius:14px}
+.cert-icon{width:28px;height:28px;border-radius:7px;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:900;flex-shrink:0}
+.cert-icon.teal{background:#0A8A7A} .cert-icon.blue{background:#0A66C2}
+.cert-item h4{font-size:13px} .cert-item .date{font-size:11px;color:#777}
+/* NOTABLE PROJECTS */
+.dark-bar{background:#232326;color:#fff;padding:22px 24px;display:flex;align-items:center;gap:22px;max-width:100%}
+.dark-bar .num{font-size:82px;font-weight:100;letter-spacing:-.06em;line-height:1;opacity:.9;-webkit-text-stroke:1px #fff;color:transparent}
+.dark-bar h2{font-size:42px;font-weight:800;letter-spacing:-.03em}
+.project-grid{max-width:1280px;margin:0 auto;padding:18px 24px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.proj-card{border-radius:22px;padding:18px;border:1px solid #EDEDEA;position:relative;overflow:hidden}
+.proj-card.blue{background:#EDE9FE}
+.proj-card.gray{background:#F3F3F1}
+.proj-card.white{background:#F8F9FF}
+.proj-card.vivid{background:#7C3AED;color:#fff}
+.proj-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.proj-head h3{font-size:22px;font-weight:900;letter-spacing:-.04em;line-height:1.1}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.tag{font-size:9px;font-weight:700;border:1px solid #111;border-radius:999px;padding:4px 8px;background:#fff;color:#111}
+.proj-card.vivid .tag{background:#fff;color:#111;border-color:#fff}
+.proj-inner{background:#fff;border-radius:18px;padding:14px;box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.proj-card.vivid .proj-inner{background:rgba(255,255,255,.98)}
+.proj-row{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0f0}
+.proj-row:last-child{border:0}
+.proj-icon{width:44px;height:44px;border-radius:10px;border:1.5px solid #7C3AED;display:grid;place-items:center;flex-shrink:0;background:#fff}
+.proj-row h4{font-size:13px}
+.proj-row p{font-size:11.5px;color:#555;line-height:1.5;margin-top:4px}
+.proj-card.vivid .proj-row p{color:#444}
+/* PERSONAL PROJECTS DETAIL */
+.personal-detail{max-width:1280px;margin:0 auto;padding:0 24px 18px}
+.detail-header{background:#232326;color:#fff;border-radius:0;padding:18px 24px;display:flex;align-items:center;gap:18px;margin:14px -24px 0}
+.detail-header .num{font-size:64px;font-weight:100;-webkit-text-stroke:1px #fff;color:transparent;line-height:1}
+.detail-header h2{font-size:34px;font-weight:800}
+.tiktok-section{display:grid;grid-template-columns:1.2fr .7fr .9fr;gap:18px;padding:18px 0;align-items:start;background:#fff;border:1px solid #EDEDEA;border-radius:18px;margin-top:18px;overflow:hidden}
+.tiktok-left{padding:14px}
+.tiktok-left .label{font-size:22px;font-weight:900;color:var(--purple);line-height:1}
+.tiktok-left h3{font-size:18px;font-weight:900;line-height:1.1}
+.thumb-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
+.thumb{aspect-ratio:4/5;background:#fff;border-radius:10px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;border:1px solid #EDEDEA}
+.thumb img{width:100%;height:100%;object-fit:contain;background:#fff;padding:4px}
+.thumb span{position:absolute;bottom:6px;left:6px;background:rgba(0,0,0,.7);color:#fff;font-size:10px;padding:2px 6px;border-radius:999px}
+.phone{width:220px;background:#111;border-radius:28px;padding:8px;box-shadow:0 20px 50px rgba(0,0,0,.2);justify-self:center}
+.phone-screen{background:#fff;border-radius:20px;overflow:hidden}
+.phone-top{padding:10px;text-align:center;border-bottom:1px solid #eee}
+.phone-top strong{font-size:12px}
+.phone-stats{display:flex;justify-content:space-around;padding:10px;text-align:center}
+.phone-stats strong{font-size:12px;display:block}
+.phone-stats span{font-size:10px;color:#777}
+.obj h4{font-size:20px;font-weight:900;letter-spacing:-.03em}
+.obj p{font-size:12px;line-height:1.6;color:#555;margin-top:6px}
+.obj ul{font-size:12px;line-height:1.7;color:#333;margin-top:8px;padding-left:14px}
+/* TESTIMONIALS */
+.testimonials{max-width:1280px;margin:0 auto;padding:14px 24px}
+.testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+.testi-card{background:#F8F8F7;border:1px solid #EDEDEA;border-radius:18px;padding:16px;position:relative}
+.testi-head{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+.avatar{width:32px;height:32px;border-radius:999px;object-fit:cover}
+.testi-head h4{font-size:13px} .testi-head span{font-size:11px;color:#777}
+.quote{position:absolute;top:14px;right:16px;font-size:28px;color:var(--purple);font-weight:900}
+.quote.blue{color:#C4B5FD}
+.testi-card p{font-size:12.5px;line-height:1.6;color:#444}
+/* SUPPORTING */
+.support{max-width:1280px;margin:0 auto;padding:14px 24px}
+.cert-gallery{display:flex;gap:14px;overflow-x:auto;padding:14px 0;scrollbar-width:none}
+.cert-gallery::-webkit-scrollbar{display:none}
+.gcert{min-width:220px;width:220px;background:#fff;border:1px solid #EDEDEA;border-radius:12px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.gcert-top{height:140px;background:linear-gradient(135deg,#EDE9FE,#C4B5FD);display:grid;place-items:center;padding:14px;text-align:center}
+.gcert-top.blue{background:linear-gradient(135deg,#EEF2FF,#C7D2FE)}
+.gcert-top.gray{background:linear-gradient(135deg,#F3F4F6,#E5E7EB)}
+.gcert-top h5{font-size:13px;font-weight:800}
+.gcert-bottom{padding:10px}
+.gcert-bottom p{font-size:10px;color:#777;line-height:1.4}
+/* FOOTER */
+.footer{text-align:center;padding:36px 24px 30px;border-top:1px solid #eee;background:#FCFCFA}
+.footer h2{font-size:54px;letter-spacing:-.06em;font-weight:900}
+.footer h2 i{font-weight:300;font-family:'Space Grotesk',sans-serif}
+.footer-links{margin-top:16px;display:inline-flex;flex-direction:column;gap:8px;text-align:left;font-size:13px}
+.footer-links a{display:flex;align-items:center;gap:8px}
+.icon-sq{width:20px;height:20px;background:#111;color:#fff;display:grid;place-items:center;border-radius:4px;font-size:11px;flex-shrink:0}
+.footer-bottom{display:flex;gap:10px;justify-content:center;margin-bottom:18px;flex-wrap:wrap}
+.top-actions{display:flex;gap:8px;justify-content:flex-start;padding:14px 24px;max-width:1280px;margin:0 auto}
+.top-actions span{background:#5A5A5A;color:#fff;font-size:12px;font-weight:700;padding:7px 12px;border-radius:999px;display:flex;align-items:center;gap:6px}
+.emoji-peace{font-size:54px;position:relative;top:4px}
+/* NEW: BuildForge additions */
+.buildforge-label{font-size:10px;font-weight:800;letter-spacing:.18em;color:var(--purple);text-transform:uppercase}
+.hero-sub{font-size:clamp(28px,4.2vw,48px);font-weight:900;letter-spacing:-.05em;line-height:.95;margin-top:10px}
+.hero-desc{margin:14px auto 0;max-width:640px;color:#666;font-size:15px;line-height:1.6}
+.results-dark{background:#0F0F10;color:#fff;padding:0}
+.results-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid #222;border-bottom:1px solid #222}
+.result-cell{padding:38px 24px;text-align:center;border-right:1px solid #222}
+.result-cell:last-child{border-right:0}
+.result-cell strong{font-size:52px;font-weight:900;letter-spacing:-.06em;display:block;line-height:1;color:#fff}
+.result-cell strong em{font-style:normal;color:var(--purple)}
+.result-cell span{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.6;margin-top:8px;display:block}
+.network{max-width:1280px;margin:0 auto;padding:56px 24px;text-align:center}
+.network h2{font-size:clamp(32px,5vw,64px);font-weight:900;letter-spacing:-.06em;line-height:.9}
+.network h2 em{font-style:normal;color:var(--purple)}
+.network-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px;text-align:left}
+.network-card{background:#fff;border:1px solid #EDEDEA;border-radius:18px;padding:20px}
+.network-card h4{font-size:18px;font-weight:900;letter-spacing:-.03em}
+.network-card p{font-size:12.5px;color:#555;line-height:1.6;margin-top:6px}
+.case-study-wrap{max-width:1280px;margin:0 auto;padding:18px 24px}
+.case-card{background:#fff;border:1px solid #EDEDEA;border-radius:22px;overflow:hidden;display:grid;grid-template-columns:1.2fr .8fr;gap:0}
+.case-left{padding:28px}
+.case-right{background:#F8F7FF;padding:28px;border-left:1px solid #EDEDEA}
+.case-kicker{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--purple);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.case-kicker::after{content:'';flex:1;height:1px;background:#EDE9FE}
+.case-title{font-size:36px;font-weight:900;letter-spacing:-.05em;margin-top:10px;line-height:1}
+.case-subtitle{font-size:13px;color:#777;font-weight:600;margin-top:4px}
+.case-block{margin-top:22px}
+.case-block h5{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#999;font-weight:800}
+.case-block p{font-size:14px;line-height:1.6;color:#333;margin-top:6px}
+.case-visual{height:100%;background:linear-gradient(135deg,#EDE9FE,#C4B5FD);display:grid;place-items:center;padding:24px}
+.case-visual-inner{background:#111;color:#fff;border-radius:18px;padding:18px;width:100%;max-width:320px;box-shadow:0 20px 40px rgba(0,0,0,.2)}
+.capabilities-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+.cap-card{background:#fff;border:1px solid #EDEDEA;border-radius:18px;padding:22px;position:relative;overflow:hidden}
+.cap-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--purple)}
+.cap-card h3{font-size:22px;font-weight:900;letter-spacing:-.04em}
+.cap-card ul{list-style:none;margin-top:12px}
+.cap-card li{font-size:12px;line-height:1.8;color:#555}
+.cap-card li::before{content:'—';color:var(--purple);margin-right:8px;font-weight:800}
+@media(max-width:900px){
+  .hero-quote,.hero-right{display:none}
+  .hero-visual{height:460px}
+  .hero-arc{width:360px;height:300px}
+  .about{grid-template-columns:1fr}
+  .exp-section{grid-template-columns:1fr}
+  .tools-cert{grid-template-columns:1fr}
+  .project-grid{grid-template-columns:1fr}
+  .tiktok-section{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .dark-bar .num{font-size:52px}
+  .dark-bar h2{font-size:26px}
+  .about-visual .arc{width:320px;height:320px}
+  .results-grid{grid-template-columns:1fr 1fr}
+  .result-cell{border-bottom:1px solid #222}
+  .network-grid{grid-template-columns:1fr 1fr}
+  .case-card{grid-template-columns:1fr}
+  .capabilities-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .network-grid{grid-template-columns:1fr}
+  .capabilities-grid{grid-template-columns:1fr}
+  .results-grid{grid-template-columns:1fr 1fr}
+}
+.work-strip{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding:18px 0;scroll-snap-type:x mandatory}
+.work-strip::-webkit-scrollbar{display:none}
+.work-item{min-width:200px;width:200px;height:360px;border-radius:14px;overflow:hidden;flex-shrink:0;border:1px solid #EDEDEA;position:relative;background:#fff;scroll-snap-align:start;box-shadow:0 4px 16px rgba(0,0,0,.06);display:flex;align-items:center;justify-content:center;padding:8px}
+.work-item img{width:100%;height:100%;object-fit:contain;background:#fff}
+.work-item span{position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,.78);color:#fff;font-size:10px;font-weight:700;padding:4px 8px;border-radius:999px;letter-spacing:.02em}
+.proj-preview{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.proj-preview.single{grid-template-columns:1fr}
+.proj-preview div{border-radius:12px;overflow:hidden;background:#fff;border:1px solid #EDEDEA;display:flex;align-items:center;justify-content:center;padding:6px;min-height:180px;height:auto}
+.proj-preview img{width:100%;height:auto;max-height:220px;object-fit:contain;background:#fff}
+.proj-preview.single div{height:170px}
+.case-gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.case-gallery.single{grid-template-columns:1fr}
+.case-gallery div{border-radius:12px;overflow:hidden;border:1px solid #EDEDEA;background:#fff;display:flex;align-items:center;justify-content:center;padding:6px;min-height:180px;height:auto}
+.case-gallery div.tall{height:auto;min-height:220px}
+.case-gallery img{width:100%;height:auto;max-height:240px;object-fit:contain;object-position:center;background:#fff}
+
+</style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <div class="nav">
+    <div class="logo">BUILDFORGE<span>.</span></div>
+    <div class="nav-links">
+      <a class="active" href="#work">Work</a>
+      <a href="#network">Network</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a class="btn-pill" href="#work">Explore the work <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a class="btn-black" href="#contact">Let's build</a>
+    </div>
+  </div>
+</div>
+
+<!-- 01 — HERO -->
+<section class="hero" id="overview">
+  <div style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #EDEDEA;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.05)">• Strategy · Brand · Content · Growth · Tech <span style="background:#111;color:#fff;border-radius:999px;padding:4px 10px;margin-left:6px">BuildForge Network</span></div>
+  <h1 style="margin-top:16px;letter-spacing:-.06em">BUILDFORGE</h1>
+  <div class="hero-sub">We build what <em style="color:var(--purple);font-style:normal">moves brands</em> forward.</div>
+  <p class="hero-desc">A building network — not an agency. One connected team across <strong>strategy, creative, marketing & technology</strong>.</p>
+  <p style="margin:12px auto 0;display:inline-flex;gap:8px;flex-wrap:wrap;justify-content:center"><span style="border:1px solid #111;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;background:#fff">Strategy</span><span style="border:1px solid #111;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;background:#fff">Brand</span><span style="border:1px solid #111;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;background:var(--purple);color:#fff;border-color:var(--purple)">Content</span><span style="border:1px solid #111;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;background:#fff">Growth</span><span style="border:1px solid #111;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:700;background:#fff">Tech</span></p>
+
+  <div class="hero-quote">You stop asking, “Does this look good?” And start asking, “Does this actually move the business?” — BuildForge Principle</div>
+  <div class="hero-right"><strong>70%</strong><span>Work-first portfolio<br>Case studies over decks</span></div>
+
+  <div class="hero-visual">
+    <div class="hero-arc"></div>
+    <img class="hero-img" src="pic.png" alt="BuildForge — We build what moves brands forward">
+    <div class="pill p-Marketing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="vertical-align:middle"><path d="M9 21h6"/><path d="M12 17a5 5 0 0 0 5-5c0-2.8-2.2-5-5-5s-5 2.2-5 5c0 2.8 2.2 5 5 5z"/><path d="M8 10h.01M16 10h.01M12 8v1"/></svg> Strategy</div>
+    <div class="pill p-Brand"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="vertical-align:middle"><path d="M12 2l2.4 7.2H22l-6.2 4.5 2.4 7.3L12 16.5 5.8 21l2.4-7.3L2 9.2h7.6z"/></svg> Brand</div>
+    <div class="pill p-Ads"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="vertical-align:middle"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h8v8"/></svg> Growth</div>
+    <div class="pill p-Social"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="vertical-align:middle"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg> Tech</div>
+    <div class="hero-ctas"><a href="#work">Explore the work <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a href="#contact">Start a project</a></div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat-star"><svg width="12" height="12" viewBox="0 0 24 24" fill="#7C3AED" style="vertical-align:middle"><path d="M12 2l2.4 7.2H22l-6.2 4.5 2.4 7.3L12 16.5 5.8 21l2.4-7.3L2 9.2h7.6z"/></svg></div>
+  <div class="stat-item"><strong>83K+</strong><span>Views · 1 month</span></div>
+  <div class="stat-item"><strong>64%</strong><span>Non-followers reached</span></div>
+  <div class="stat-item"><strong>+398</strong><span>New followers</span></div>
+  <div class="stat-item"><strong>3.2K</strong><span>Profile visits</span></div>
+  <div class="stat-item"><strong>4</strong><span>Markets · Industries</span></div>
+</div>
+
+<div class="marquee"><div class="marquee-track">
+  <span>THINK</span><b>·</b><span>BUILD</span><b>·</b><span>GROW</span><b style="color:var(--purple)">•</b><span>Strategy</span><b style="color:var(--purple)">•</b><span>Brand</span><b style="color:var(--purple)">•</b><span>Content</span><b style="color:var(--purple)">•</b><span>Growth</span><b style="color:var(--purple)">•</b><span>Tech</span><b style="color:var(--purple)">•</b>
+  <span>THINK</span><b>·</b><span>BUILD</span><b>·</b><span>GROW</span><b style="color:var(--purple)">•</b><span>Strategy</span><b style="color:var(--purple)">•</b><span>Brand</span><b style="color:var(--purple)">•</b><span>Content</span><b style="color:var(--purple)">•</b><span>Growth</span><b style="color:var(--purple)">•</b><span>Tech</span><b style="color:var(--purple)">•</b>
+</div></div>
+
+<!-- 02 — WHAT WE DO -->
+<section class="about" id="about">
+  <div>
+    <div class="buildforge-label">02 — What we do</div>
+    <div class="section-title" style="margin-top:8px">THINK.<br>BUILD.<br><span style="color:var(--purple)">GROW.</span></div>
+    <p style="font-size:15px;color:#333;line-height:1.6">We don't start with deliverables. We start with the opportunity — then make it real, then put it in motion.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:22px">
+      <div style="background:#fff;border:1px solid #EDEDEA;border-radius:14px;padding:16px"><strong style="font-size:12px;letter-spacing:.06em">THINK —</strong><div style="font-size:12.5px;color:#333;margin-top:6px;line-height:1.5"><strong>Find the opportunity.</strong><br>Market · Audience · Positioning · Business problem behind the brief.</div></div>
+      <div style="background:#111;color:#fff;border:1px solid #111;border-radius:14px;padding:16px"><strong style="font-size:12px;letter-spacing:.06em;color:var(--orange2)">BUILD —</strong><div style="font-size:12.5px;color:#ccc;margin-top:6px;line-height:1.5"><strong style="color:#fff">Make the idea real.</strong><br>Brand · Identity · Content · Product · Campaigns people notice.</div></div>
+      <div style="background:#fff;border:1px solid #EDEDEA;border-radius:14px;padding:16px"><strong style="font-size:12px;letter-spacing:.06em">GROW —</strong><div style="font-size:12.5px;color:#333;margin-top:6px;line-height:1.5"><strong>Put it in motion.</strong><br>Distribution · Performance · Acquisition · Optimisation.</div></div>
+    </div>
+    <p style="font-size:12px;color:#777;margin-top:14px;border-left:2px solid var(--purple);padding-left:12px">One connected team across <strong>strategy, creative, marketing & technology.</strong> The right people around the right problem.</p>
+  </div>
+  <div class="about-visual">
+    <div class="arc"></div>
+    <img src="pic.png" alt="BuildForge Work">
+  </div>
+</section>
+
+<!-- 03 — SELECTED WORK -->
+<div class="dark-bar" id="work"><div class="num">03</div><h2>SELECTED WORK</h2><span style="margin-left:auto;font-size:11px;letter-spacing:.14em;opacity:.6;font-weight:700">VISUAL CARDS ONLY — EACH OPENS CASE STUDY ↓</span></div>
+
+<section class="project-grid">
+  <div class="proj-card vivid" style="cursor:pointer" onclick="document.getElementById('case-forensic').scrollIntoView({behavior:'smooth'})">
+    <div class="proj-head"><h3>FORENSIC WALLAH<br><span style="font-size:13px;font-weight:700;opacity:.9">Extended Marketing Wing</span></h3><span style="background:#fff;color:#111;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:800">FW</span></div>
+    <div class="proj-tags"><span class="tag">Marketing</span><span class="tag">Content</span><span class="tag">Growth</span><span class="tag">EdTech</span></div>
+    <div class="proj-preview"><div><img src="forensic-ugc-net.jpeg" alt="Forensic Wallah - UGC NET Aspirant campaign"></div><div><img src="forensic-cuet-2027.jpeg" alt="Forensic Wallah - CUET PG 2027 carousel"></div></div>
+    <div class="proj-inner">
+      <div class="proj-row"><div class="proj-icon" style="border-color:var(--purple)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.8" style="vertical-align:middle"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2"/></svg></div><div><h4>Turn education into audience growth</h4><p>Career, exams & opportunities — built as a content system, not one-off posts.</p></div></div>
+      <div class="proj-row"><div class="proj-icon" style="border-color:var(--purple)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.8" style="vertical-align:middle"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 9h20M7 5v14M17 5v14M2 15h20"/></svg></div><div><h4>Reels · Social · Campaigns · Performance</h4><p>83K+ views in 1 month · 64% non-followers · System > virality.</p></div></div>
+      <div style="margin-top:12px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em">View case study <span style="background:#111;color:#fff;border-radius:999px;padding:4px 10px;display:inline-flex;align-items:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+    </div>
+  </div>
+
+  <div class="proj-card blue" style="cursor:pointer" onclick="document.getElementById('case-wingmann').scrollIntoView({behavior:'smooth'})">
+    <div class="proj-head"><h3>WINGMANN<br><span style="font-size:13px;font-weight:600;color:#555">Brand · Identity</span></h3><div style="display:flex;gap:6px"><span class="tag" style="background:#111;color:#fff">WM</span></div></div>
+    <div class="proj-tags"><span class="tag">Brand</span><span class="tag">Content</span><span class="tag">Growth</span></div>
+    <div class="proj-preview"><div><img src="wingmann-dont-download.jpeg" alt="Wingmann - Don t download this dating app"></div><div><img src="wingmann-harmless.jpeg" alt="Wingmann - Sounds harmless"></div></div>
+    <div class="proj-inner">
+      <div class="proj-row"><div class="proj-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="#7C3AED" style="vertical-align:middle"><path d="M12 2l2.4 7.2H22l-6.2 4.5 2.4 7.3L12 16.5 5.8 21l2.4-7.3L2 9.2h7.6z"/></svg></div><div><h4>Brand behind the content</h4><p>Positioning, voice, messaging — a brand isn't what people see, it's what they remember.</p></div></div>
+      <div class="proj-row"><div class="proj-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.6" style="vertical-align:middle"><circle cx="12" cy="12" r="10"/><circle cx="7.5" cy="10" r="1"/><circle cx="12" cy="7" r="1"/><circle cx="16.5" cy="10" r="1"/><circle cx="14" cy="16" r="1"/></svg></div><div><h4>Creative · Copy · Social system</h4><p>From identity to everyday content — consistent, ownable, built to scale.</p></div></div>
+      <div style="margin-top:12px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em">View case study <span style="background:#fff;border:1px solid #111;border-radius:999px;padding:4px 10px;display:inline-flex;align-items:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+    </div>
+  </div>
+
+  <div class="proj-card gray" style="cursor:pointer" onclick="document.getElementById('case-rcet').scrollIntoView({behavior:'smooth'})">
+    <div class="proj-head"><h3>RCET PREP<br><span style="font-size:13px;font-weight:600;color:#555">Content · Community</span></h3><span style="background:#7C3AED;color:#fff;padding:6px 10px;border-radius:10px;font-size:12px;font-weight:800">RP</span></div>
+    <div class="proj-tags"><span class="tag">Content</span><span class="tag">Growth</span><span class="tag">EdTech</span></div>
+    <div class="proj-preview"><div><img src="rcet-aspirant.jpeg" alt="RCET 2027 Aspirant campaign"></div><div><img src="rcet-hidden.jpeg" alt="RCET - The Hidden mistake carousel"></div></div>
+    <div class="proj-inner">
+      <div class="proj-row"><div class="proj-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.8" style="vertical-align:middle"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div><h4>Content with a job to do</h4><p>Stop the scroll → Create relevance → Build trust → Drive action.</p></div></div>
+      <div class="proj-row"><div class="proj-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="vertical-align:middle"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h8v8"/></svg></div><div><h4>Strategy · Reels · Campaigns</h4><p>Exam-focused content engineered for save, share, and enrolment.</p></div></div>
+      <div style="margin-top:12px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em">View case study <span style="background:#111;color:#fff;border-radius:999px;padding:4px 10px;display:inline-flex;align-items:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+    </div>
+  </div>
+
+  <div class="proj-card white" style="background:#F8F9FF;border:1px solid #E5E7EB">
+    <div class="proj-head"><h3>CONFIDENTIAL / UAE<br><span style="font-size:13px;font-weight:600;color:#555">Healthcare · DIMS Al Ain</span></h3><div style="display:flex;gap:6px"><span class="tag">UAE</span><span class="tag">Healthcare</span></div></div>
+    <div class="proj-tags"><span class="tag">Brand</span><span class="tag">Marketing</span><span class="tag">Healthcare</span></div>
+    <div class="proj-inner" style="background:#fff">
+      <div class="proj-row"><div class="proj-icon" style="border-color:#111"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="1.6" style="vertical-align:middle"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10A15 15 0 0 1 12 2z"/></svg></div><div><h4>India × UAE — Different audience, different playbook</h4><p>Healthcare communication adapted for cultural & behavioral nuances, not just translation.</p></div></div>
+      <div class="proj-row"><div class="proj-icon" style="border-color:#111"><svg width="12" height="12" viewBox="0 0 24 24" fill="#7C3AED" style="vertical-align:middle"><path d="M12 2l2.4 7.2H22l-6.2 4.5 2.4 7.3L12 16.5 5.8 21l2.4-7.3L2 9.2h7.6z"/></svg></div><div><h4>Brand · Content · Social · Campaigns</h4><p>Sensitive category, high trust — clarity over cleverness.</p></div></div>
+      <div style="margin-top:12px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.08em">View case study <span style="background:#fff;border:1px solid #111;border-radius:999px;padding:4px 10px;display:inline-flex;align-items:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 — CASE STUDY INTRO (Featured) -->
+<section class="case-study-wrap" id="case-forensic">
+  <div class="detail-header" style="margin:14px 0 0;border-radius:18px 18px 0 0"><div class="num">04</div><h2>Case Study — Forensic Wallah</h2></div>
+  <div class="case-card">
+    <div class="case-left">
+      <div class="case-kicker">Extended Marketing Wing</div>
+      <div class="case-title">FORENSIC WALLAH</div>
+      <div class="case-subtitle">83K+ views · 1 month · EdTech · India</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
+        <div class="case-block" style="margin-top:0">
+          <h5>The Challenge</h5>
+          <p><strong>Turn education content into audience growth.</strong><br>High-value academic topics with low organic reach. Needed a system that earns attention without diluting credibility.</p>
+        </div>
+        <div class="case-block" style="margin-top:0">
+          <h5>The Move</h5>
+          <p><strong>Build around career, exams & opportunities.</strong><br>Not syllabus — aspiration. Created content pillars that map to student intent, then engineered for saves, shares & follows.</p>
+        </div>
+      </div>
+      <div class="case-block">
+        <h5>Then — Show the work</h5>
+        <p>No giant explanation. Reels, carousels, hooks, captions, distribution — built as one loop: <strong>Audience → Message → Creative → Campaign → Performance.</strong></p>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:18px;flex-wrap:wrap">
+        <span class="tag">Reels</span><span class="tag">Copy</span><span class="tag">Social</span><span class="tag">Performance</span><span class="tag">Creative</span>
+      </div>
+    </div>
+    <div class="case-right">
+      <div style="border-radius:14px;overflow:hidden;border:1px solid #EDEDEA;margin-bottom:10px;background:#fff"><img src="forensic-grid.jpeg" alt="Forensic Wallah - Instagram grid system" style="width:100%;height:auto;display:block"></div>
+      <div class="case-gallery"><div><img src="forensic-ugc-net.jpeg" alt="UGC NET Aspirant"></div><div><img src="forensic-sankalp.jpeg" alt="Sankalp 1.0 CUET 2027"></div></div>
+      <p style="font-size:10px;color:#777;margin:8px 0 12px;text-align:center">Real feed system and campaign creatives - no mockups, actual client work</p>
+      <div class="case-visual">
+        <div class="case-visual-inner">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;opacity:.7"><span style="display:inline-flex;align-items:center;gap:6px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1.4" fill="currentColor"/></svg> Forensic Wallah</span><span>View insights →</span></div>
+          <div style="margin-top:18px;background:#222;border-radius:12px;padding:14px">
+            <div style="font-size:11px;opacity:.6;letter-spacing:.1em;font-weight:700">REEL PERFORMANCE</div>
+            <div style="font-size:28px;font-weight:900;margin-top:6px">83,421 <span style="font-size:13px;font-weight:600;opacity:.7">views</span></div>
+            <div style="height:6px;background:#333;border-radius:999px;margin-top:10px;overflow:hidden"><div style="width:64%;height:100%;background:var(--purple)"></div></div>
+            <div style="display:flex;justify-content:space-between;font-size:10px;margin-top:6px;opacity:.6"><span>64% non-followers</span><span>36% followers</span></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+            <div style="background:#222;border-radius:12px;padding:12px;text-align:center"><div style="font-size:18px;font-weight:900">+398</div><div style="font-size:10px;opacity:.6">Followers</div></div>
+            <div style="background:#222;border-radius:12px;padding:12px;text-align:center"><div style="font-size:18px;font-weight:900">3,226</div><div style="font-size:10px;opacity:.6">Profile visits</div></div>
+          </div>
+          <div style="margin-top:12px;font-size:11px;line-height:1.5;opacity:.7">Built around <strong style="color:#fff">career → exam → opportunity</strong> content. Hook in 1.2s. Save-worthy structure. Distribution first.</div>
+        </div>
+      </div>
+      <p style="font-size:10px;color:#777;margin-top:12px;text-align:center">Analytics screenshot · Visual-first proof. No paragraphs.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04b — WINGMANN CASE STUDY -->
+<section class="case-study-wrap" id="case-wingmann">
+  <div class="detail-header" style="margin:14px 0 0;border-radius:18px 18px 0 0;background:#111"><div class="num">04</div><h2>Case Study — Wingmann</h2></div>
+  <div class="case-card" style="border-top:0">
+    <div class="case-left">
+      <div class="case-kicker">Brand · Content · Growth</div>
+      <div class="case-title">WINGMANN</div>
+      <div class="case-subtitle">Relationship platform · Dating with intent — Not swiping</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
+        <div class="case-block" style="margin-top:0">
+          <h5>The Challenge</h5>
+          <p><strong>Regain trust in dating.</strong><br>Market saturated with swipe fatigue and ghosting. Needed a brand that feels safe, intentional, premium — not transactional.</p>
+        </div>
+        <div class="case-block" style="margin-top:0">
+          <h5>The Move</h5>
+          <p><strong>Build around "No swiping. No ghosting. 3 Matches a day."</strong><br>Positioning → visual system (purple + gold) → content that mirrors real relationship anxieties.</p>
+        </div>
+      </div>
+      <div class="case-block">
+        <h5>Then — Show the work</h5>
+        <p>Carousels, reels, app UI mockups — engineered for saves and shares. Tone: honest, premium, human. <strong>Creative work first.</strong></p>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:18px;flex-wrap:wrap">
+        <span class="tag">Brand Voice</span><span class="tag">Carousels</span><span class="tag">Reels</span><span class="tag">App UI</span><span class="tag">Copy</span>
+      </div>
+    </div>
+    <div class="case-right" style="background:#F5F0FF">
+      <div class="case-gallery"><div><img src="wingmann-dont-download.jpeg" alt="Wingmann - Don t download"></div><div><img src="wingmann-harmless.jpeg" alt="Sounds harmless"></div></div>
+      <div style="border-radius:14px;overflow:hidden;border:1px solid #EDEDEA;margin-top:10px;background:#fff"><img src="wingmann-phone.jpeg" alt="Wingmann app UI - Trust me" style="width:100%;height:auto;display:block"></div>
+      <div class="case-gallery" style="margin-top:10px"><div><img src="wingmann-founder.jpeg" alt="Wingmann Founder story"></div><div><img src="wingmann-journey.jpeg" alt="Some journeys feel lonely"></div></div>
+      <p style="font-size:10px;color:#777;margin:8px 0 0;text-align:center">Carousel system · In-app storytelling · Founder-led content</p>
+    </div>
+  </div>
+</section>
+
+<!-- 04c — RCET CASE STUDY -->
+<section class="case-study-wrap" id="case-rcet">
+  <div class="detail-header" style="margin:14px 0 0;border-radius:18px 18px 0 0;background:#7C3AED"><div class="num">04</div><h2>Case Study — RCET Prep</h2></div>
+  <div class="case-card" style="border-color:#EDE9FE">
+    <div class="case-left">
+      <div class="case-kicker">Content · Growth</div>
+      <div class="case-title">RCET PREP</div>
+      <div class="case-subtitle">Content with a job to do · Rajasthan CET 2027</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px">
+        <div class="case-block" style="margin-top:0">
+          <h5>The Challenge</h5>
+          <p><strong>Stop the scroll, create relevance.</strong><br>Exam prep content is noisy and generic. Needed to build trust before selling the course.</p>
+        </div>
+        <div class="case-block" style="margin-top:0">
+          <h5>The Move</h5>
+          <p><strong>Build around intent.</strong><br>Hooks like "RCET 2027 Aspirant? Think you're ready? Answer these 5 questions" → Value → Conversion.</p>
+        </div>
+      </div>
+      <div class="case-block">
+        <h5>Then — Show the work</h5>
+        <p>Yellow notebook paper system — ownable, rough, exam-native. Swipe carousels that diagnose, not just teach. <strong>Save-worthy > viral.</strong></p>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:18px;flex-wrap:wrap">
+        <span class="tag">Hook System</span><span class="tag">Carousel</span><span class="tag">Content Strategy</span>
+      </div>
+    </div>
+    <div class="case-right" style="background:#FFFBEB">
+      <div style="border-radius:14px;overflow:hidden;border:1px solid #FDE68A;background:#fff"><img src="rcet-aspirant.jpeg" alt="RCET 2027 Aspirant" style="width:100%;height:auto;display:block"></div>
+      <div style="border-radius:14px;overflow:hidden;border:1px solid #EDEDEA;background:#fff;margin-top:10px"><img src="rcet-hidden.jpeg" alt="The Hidden mistake RCET" style="width:100%;height:auto;display:block"></div>
+      <p style="font-size:10px;color:#777;margin:8px 0 0;text-align:center">Bold typography · Paper texture · Diagnostic hooks · Built for shares & saves</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 — RESULTS -->
+<section class="results-dark">
+  <div style="max-width:1280px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;gap:18px;background:#0F0F10">
+    <div style="font-size:11px;letter-spacing:.18em;font-weight:800;color:var(--purple)">05 — THE NUMBERS</div>
+    <div style="flex:1;height:1px;background:#222"></div>
+    <div style="font-size:11px;letter-spacing:.08em;font-weight:700;opacity:.5;color:#fff">ALMOST ENTIRELY VISUAL / DATA</div>
+  </div>
+  <div class="results-grid">
+    <div class="result-cell"><strong>83K<em>+</em></strong><span>Views</span><div style="font-size:11px;opacity:.4;margin-top:6px">1 month · organic + paid</div></div>
+    <div class="result-cell"><strong>64<em>%</em></strong><span>Non-followers</span><div style="font-size:11px;opacity:.4;margin-top:6px">New audience reached</div></div>
+    <div class="result-cell"><strong>+398</strong><span>Followers</span><div style="font-size:11px;opacity:.4;margin-top:6px">Net growth</div></div>
+    <div class="result-cell"><strong>3,226</strong><span>Profile visits</span><div style="font-size:11px;opacity:.4;margin-top:6px">Intent signal</div></div>
+  </div>
+  <div style="max-width:1280px;margin:0 auto;padding:16px 24px;background:#0F0F10;display:grid;grid-template-columns:1.4fr .9fr;gap:18px;align-items:center;border-top:1px solid #222">
+    <div style="background:#1A1A1E;border:1px solid #2A2A2E;border-radius:14px;padding:14px;display:flex;gap:14px;align-items:center">
+      <div style="flex:1">
+        <div style="font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--purple)">DISTRIBUTION BREAKDOWN</div>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <div style="flex:1;background:#2A2A2E;border-radius:999px;height:10px;overflow:hidden;display:flex"><div style="width:64%;background:var(--purple)"></div><div style="width:36%;background:#3A3A3E"></div></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;margin-top:6px"><span style="color:#aaa">● 64% Non-followers</span><span style="color:#aaa">● 36% Followers</span></div>
+      </div>
+      <div style="background:#fff;color:#111;border-radius:10px;padding:10px 14px;text-align:center;min-width:90px"><div style="font-size:18px;font-weight:900">83K+</div><div style="font-size:10px;opacity:.6">Views</div></div>
+    </div>
+    <div style="color:#aaa;font-size:12.5px;line-height:1.6"><strong style="color:#fff">Numbers treated like design elements.</strong><br>Full-screen analytics, not explanations. The work is the proof. Performance is the narrative.</div>
+  </div>
+</section>
+
+<!-- Work Wall — visual -->
+<section class="personal-detail">
+  <div class="tiktok-section">
+    <div class="tiktok-left">
+      <div class="label">WORK WALL</div>
+      <h3>SOME OF THE<br>THINGS WE'VE BUILT.<br><span style="font-weight:400;font-size:13px;color:#777">Reels · Campaigns · Ads · Copy · Brand · Social · Product</span></h3>
+      <div class="thumb-grid">
+        <div class="thumb"><img src="forensic-ugc-net.jpeg" alt="UGC NET Aspirant - Forensic Wallah"><span>FW - AD</span></div>
+        <div class="thumb"><img src="forensic-cuet-2027.jpeg" alt="CUET-PG 2027"><span>FW - CAROUSEL</span></div>
+        <div class="thumb"><img src="forensic-sankalp.jpeg" alt="SANKALP 1.0"><span>FW - COURSE</span></div>
+        <div class="thumb"><img src="rcet-aspirant.jpeg" alt="RCET 2027"><span>RCET - HOOK</span></div>
+        <div class="thumb"><img src="rcet-hidden.jpeg" alt="Hidden mistake"><span>RCET - CONCEPT</span></div>
+        <div class="thumb"><img src="wingmann-dont-download.jpeg" alt="Wingmann"><span>WINGMANN - BRAND</span></div>
+      </div>
+      <div style="text-align:center;font-weight:900;margin-top:8px;letter-spacing:.08em;font-size:11px">HORIZONTAL SCROLL · FULL-SCREEN VISUALS · SUBTLE ANIMATIONS</div>
+    </div>
+
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="phone-top"><strong>BuildForge</strong><div style="font-size:10px;color:#777">@buildforge · Studio Network</div></div>
+        <img src="pic.png" style="width:80px;height:80px;border-radius:999px;margin:12px auto;display:block;object-fit:cover" alt="BuildForge">
+        <div class="phone-stats"><div><strong>50+</strong><span>Campaigns</span></div><div><strong>10+</strong><span>Brands</span></div><div><strong>4</strong><span>Industries</span></div></div>
+        <div style="padding:10px;display:flex;gap:6px"><span style="flex:1;background:#eee;border-radius:999px;padding:6px;text-align:center;font-size:10px;font-weight:700">Work</span><span style="flex:1;background:var(--purple);color:#fff;border-radius:999px;padding:6px;text-align:center;font-size:10px;font-weight:700">Contact</span></div>
+        <div style="font-size:10px;padding:10px;color:#555">Strategy · Brand · Content · Growth · Tech<br> buildforge.site</div>
+      </div>
+    </div>
+
+    <div class="obj" style="padding:14px">
+      <h4>BEHIND THE WORK</h4><p>We don't start with the creative. We start with the question.</p>
+      <ul style="font-size:11px;line-height:1.6">
+        <li>What are we trying to achieve?</li><li>Who are we trying to reach?</li><li>What do they care about?</li><li>What should they believe?</li><li>What should we say & create?</li><li>Where should we distribute it?</li><li>What happened? What next?</li>
+      </ul>
+      <h4 style="margin-top:14px">WHY IT WORKS</h4><ul><li>Creative work first, company info second</li><li>Case studies = 70% of the portfolio</li><li>Strategy → Brand → Content → Growth → Tech in one loop</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- FULL WORK WALL — Horizontal scroll (spec: Full-screen project visuals. Subtle animations. Horizontal scrolling work wall) -->
+<section style="max-width:1280px;margin:0 auto;padding:0 24px 18px">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+    <div class="buildforge-label">WORK WALL — FULL VISUALS</div>
+    <div style="flex:1;height:1px;background:#EDEDEA"></div>
+    <div style="font-size:11px;font-weight:700;opacity:.4;letter-spacing:.08em">← SCROLL →</div>
+  </div>
+  <div class="work-strip">
+    <div class="work-item"><img src="forensic-ugc-net.jpeg" alt="Forensic UGC NET"><span>FORENSIC · PAID AD</span></div>
+    <div class="work-item"><img src="forensic-cuet-2027.jpeg" alt="CUET PG 2027"><span>FORENSIC · CAROUSEL 01</span></div>
+    <div class="work-item"><img src="forensic-sankalp.jpeg" alt="Sankalp 1.0"><span>FORENSIC · COURSE</span></div>
+    <div class="work-item"><img src="forensic-grid.jpeg" alt="Forensic Grid"><span>FORENSIC · FEED SYSTEM</span></div>
+    <div class="work-item"><img src="rcet-aspirant.jpeg" alt="RCET Aspirant"><span>RCET · HOOK</span></div>
+    <div class="work-item"><img src="rcet-hidden.jpeg" alt="RCET Hidden"><span>RCET · CONCEPT</span></div>
+    <div class="work-item"><img src="wingmann-dont-download.jpeg" alt="Wingmann Dating"><span>WINGMANN · BRAND</span></div>
+    <div class="work-item"><img src="wingmann-harmless.jpeg" alt="Wingmann Harmless"><span>WINGMANN · CAROUSEL</span></div>
+    <div class="work-item"><img src="wingmann-phone.jpeg" alt="Wingmann Phone"><span>WINGMANN · APP UI</span></div>
+    <div class="work-item"><img src="wingmann-break-swipe.jpeg" alt="Break swipe"><span>WINGMANN · REEL</span></div>
+    <div class="work-item"><img src="wingmann-founder.jpeg" alt="Wingmann Founder"><span>WINGMANN · FOUNDER</span></div>
+    <div class="work-item"><img src="wingmann-journey.jpeg" alt="Some journeys"><span>WINGMANN · REEL</span></div>
+  </div>
+  <p style="font-size:11px;color:#777;margin-top:10px;text-align:center">All creatives are real client work — cropped only, no redesign. Tap to view full. <span style="color:#111;font-weight:700">Creative work first, company information second.</span></p>
+</section>
+
+<!-- 06 — THE NETWORK -->
+<section class="network" id="network">
+  <div class="buildforge-label">06 — THE NETWORK</div>
+  <h2 style="margin-top:10px">NOT AN AGENCY.<br><em>A BUILDING</em> NETWORK.</h2>
+  <p style="max-width:560px;margin:14px auto 0;color:#555;font-size:14px;line-height:1.6">We bring the right people around the right problem. No bloated teams. No handoffs. Just builders who own the outcome.</p>
+  <div class="network-grid">
+    <div class="network-card"><h4>Strategy.</h4><p>Positioning, go-to-market, campaign architecture. Clarity before creative.</p><div style="margin-top:12px;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--purple)">THINK →</div></div>
+    <div class="network-card" style="background:#111;color:#fff;border-color:#111"><h4 style="color:#fff">Creative.</h4><p style="color:#aaa">Brand, identity, copy, content, art direction. Work people remember.</p><div style="margin-top:12px;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--orange2)">BUILD →</div></div>
+    <div class="network-card"><h4>Marketing.</h4><p>Social, reels, campaigns, performance, distribution. Attention → action.</p><div style="margin-top:12px;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--purple)">GROW →</div></div>
+    <div class="network-card"><h4>Technology.</h4><p>Web, product, AI, automation. The system that makes growth compound.</p><div style="margin-top:12px;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--purple)">SHIP →</div></div>
+  </div>
+  <p style="margin-top:18px;font-size:13px;font-weight:800;letter-spacing:.08em">The right people around the right problem.<br><span style="font-weight:400;color:#777">That's enough.</span></p>
+</section>
+
+<!-- 07 — CAPABILITIES -->
+<section style="max-width:1280px;margin:0 auto;padding:18px 24px" id="capabilities">
+  <div style="display:flex;align-items:end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+    <div>
+      <div class="buildforge-label">07 — Capabilities</div>
+      <h2 style="font-size:42px;font-weight:900;letter-spacing:-.05em;margin-top:6px">WHAT WE CAN BUILD</h2>
+      <p style="font-size:13px;color:#777;margin-top:4px">Visual grid, not paragraphs. Pick the problem — we assemble the stack.</p>
+    </div>
+    <div style="font-size:11px;font-weight:700;letter-spacing:.1em;opacity:.5">BRAND · CONTENT · GROWTH · TECH</div>
+  </div>
+  <div class="capabilities-grid">
+    <div class="cap-card">
+      <div style="width:40px;height:40px;border-radius:10px;background:#EDE9FE;display:grid;place-items:center;font-size:18px"></div>
+      <h3 style="margin-top:12px">BRAND</h3>
+      <ul><li>Positioning</li><li>Identity</li><li>Creative Direction</li><li>Voice & Messaging</li></ul>
+    </div>
+    <div class="cap-card">
+      <div style="width:40px;height:40px;border-radius:10px;background:#111;color:#fff;display:grid;place-items:center;font-size:18px"></div>
+      <h3 style="margin-top:12px">CONTENT</h3>
+      <ul><li>Social</li><li>Video & Reels</li><li>Campaigns</li><li>Copy & Story</li></ul>
+    </div>
+    <div class="cap-card">
+      <div style="width:40px;height:40px;border-radius:10px;background:#EDE9FE;display:grid;place-items:center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#EDE9FE" stroke-width="1.8" style="vertical-align:middle"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h8v8"/></svg></div>
+      <h3 style="margin-top:12px">GROWTH</h3>
+      <ul><li>Marketing</li><li>Performance</li><li>Distribution</li><li>Acquisition</li></ul>
+    </div>
+    <div class="cap-card">
+      <div style="width:40px;height:40px;border-radius:10px;background:#111;color:#fff;display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="vertical-align:middle"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
+      <h3 style="margin-top:12px">TECH</h3>
+      <ul><li>Web</li><li>Product</li><li>AI</li><li>Automation</li></ul>
+    </div>
+  </div>
+  <div style="margin-top:14px;background:#232326;color:#fff;border-radius:14px;padding:14px 18px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+    <div style="font-size:12px;line-height:1.5"><strong>How we work:</strong> Audience → Message → Creative → Campaign → Performance — one loop, one owner.</div>
+    <div style="display:flex;gap:8px"><span style="background:var(--purple);color:#fff;border-radius:999px;padding:6px 12px;font-size:11px;font-weight:800">Strategy</span><span style="background:#333;color:#fff;border-radius:999px;padding:6px 12px;font-size:11px;font-weight:700">Build</span><span style="background:#333;color:#fff;border-radius:999px;padding:6px 12px;font-size:11px;font-weight:700">Grow</span></div>
+  </div>
+</section>
+
+<!-- 08 — CLOSE -->
+<footer class="footer" id="contact" style="margin-top:18px;background:#0F0F10;color:#fff;border-top:0">
+  <div class="buildforge-label" style="color:var(--orange2)">08 — CLOSE</div>
+  <h2 style="color:#fff;margin-top:8px;font-size:clamp(36px,6vw,72px);line-height:.9">GOT SOMETHING<br><em style="color:var(--purple);font-style:normal">WORTH BUILDING?</em></h2>
+  <p style="color:#fff;font-size:28px;margin-top:14px;font-weight:800;letter-spacing:-.04em">Let's build it.</p>
+  <p style="color:#999;font-size:15px;margin-top:4px">Creative work first, company information second. 70% work. 30% frame.</p>
+  <div style="margin-top:28px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap;text-align:left">
+    <div class="footer-links" style="color:#ccc">
+      <a href="https://buildforge.site" target="_blank" style="color:#fff"><span class="icon-sq" style="display:grid;place-items:center;background:var(--purple)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1.4" fill="currentColor"/></svg></span> buildforge.site</a>
+      <a href="mailto:ceo@squadranlabs.in" style="color:#ccc"><span class="icon-sq" style="display:grid;place-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="vertical-align:middle"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 8L22 6"/></svg></span> ceo@squadranlabs.in</a>
+      <a href="#" style="color:#999"><span class="icon-sq" style="background:#333;display:grid;place-items:center"><svg width="10" height="10" viewBox="0 0 24 24" fill="#fff" style="vertical-align:middle"><path d="M12 2l2.4 7.2H22l-6.2 4.5 2.4 7.3L12 16.5 5.8 21l2.4-7.3L2 9.2h7.6z"/></svg></span> BuildForge Network — Strategy · Brand · Content · Growth · Tech</a>
+    </div>
+    <div class="footer-links" style="color:#ccc">
+      <a href="#" style="color:#ccc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="vertical-align:middle"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>  Bengaluru · India · UAE · USA</a>
+      <a href="#" style="color:#ccc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="vertical-align:middle"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 8L22 6"/></svg>  THINK. BUILD. GROW.</a>
+      <a href="#" style="color:#999">Huge typography · Whitespace · Full-screen visuals · Subtle animations</a>
+    </div>
+  </div>
+  <div style="margin-top:24px;display:inline-flex;gap:10px">
+    <a href="#work" style="background:var(--purple);color:#fff;border-radius:999px;padding:12px 22px;font-size:13px;font-weight:800">Explore the work <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    <a href="mailto:ceo@squadranlabs.in" style="background:#fff;color:#111;border-radius:999px;padding:12px 22px;font-size:13px;font-weight:800">ceo@squadranlabs.in <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+  <p style="margin-top:22px;font-size:11px;color:#666;letter-spacing:.06em">© 2026 BuildForge Network — We build what moves brands forward. · Crafted as a modern creative studio portfolio.</p>
+</footer>
+
+</body>
+</html>
